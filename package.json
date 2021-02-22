@@ -13,21 +13,28 @@
   "homepage": "./",
   "private": true,
   "dependencies": {
+    "adbkit": "^2.11.1",
+    "adbkit-logcat": "^2.0.1",
+    "async-mutex": "^0.3.0",
     "cross-env": "^6.0.3",
     "electron-is-dev": "^1.1.0",
+    "postcss": "^8.2.6",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-lazylog": "^4.5.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "ws": "^7.4.3"
   },
   "scripts": {
+    "tailwind:build": "tailwind build ./src/styles/tailwind.css -o ./src/styles/styles.css",
     "start-react": "react-scripts start",
     "build-react": "react-scripts build",
     "test-react": "react-scripts test --env=jsdom",
     "eject-react": "react-scripts eject",
     "build-electron": "electron-builder",
     "build": "yarn build-react && yarn build-electron",
-    "start": "concurrently \"cross-env BROWSER=none yarn start-react\" \"wait-on http://localhost:3000 && electron .\""
+    "start": "concurrently \"cross-env BROWSER=none yarn start-react\" \"wait-on http://localhost:3000 && electron . --disable-gpu\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,9 +52,12 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^10.2.4",
     "concurrently": "^5.0.0",
     "electron": "^7.1.0",
     "electron-builder": "^22.1.0",
+    "postcss-loader": "^5.0.0",
+    "tailwindcss": "^2.0.3",
     "wait-on": "^3.3.0"
   }
 }
