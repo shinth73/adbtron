@@ -36,26 +36,31 @@ export const Logcat = () => {
       {!wsOpen ? (
         <h1 className="text-2xl text-red-700">Press to Start ...</h1>
       ) : (
-        <div style={{ height: 600, width: 1000 }}>
-          <ScrollFollow
-            startFollowing
-            render={({ onScroll, follow, startFollowing, stopFollowing }) => (
-              <LazyLog
-                enableSearch
-                url={url}
-                websocket
-                // websocketOptions={{
-                //   onOpen: (e, sock) => {
-                //     socket = sock;
-                //     sock.send(JSON.stringify({ message: "Socket has been opened!" }));
-                //   },
-                //   // formatMessage: (e) => JSON.parse(e).message,
-                // }}
-                onScroll={onScroll}
-                follow={follow}
-              />
-            )}
-          />
+        <div className="flex items-center justify-center">
+          <div style={{ height: 900, width: 1500 }}>
+            <ScrollFollow
+              startFollowing
+              render={({ onScroll, follow, startFollowing, stopFollowing }) => (
+                <LazyLog
+                  enableSearch
+                  caseInsensitive
+                  selectableLines
+                  highlight
+                  url={url}
+                  websocket
+                  // websocketOptions={{
+                  //   onOpen: (e, sock) => {
+                  //     socket = sock;
+                  //     sock.send(JSON.stringify({ message: "Socket has been opened!" }));
+                  //   },
+                  //   // formatMessage: (e) => JSON.parse(e).message,
+                  // }}
+                  onScroll={onScroll}
+                  follow={follow}
+                />
+              )}
+            />
+          </div>
         </div>
       )}
     </div>

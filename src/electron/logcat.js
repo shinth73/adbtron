@@ -31,8 +31,8 @@ const startLogcat = async (mainWindows) => {
   });
 };
 
+let sendingInterval = 0;
 let text = "";
-
 const loggingStart = async (ws) => {
   const devices = await client.listDevices();
   console.log("Logging Start ...  Device id:", devices[0].id);
@@ -40,14 +40,17 @@ const loggingStart = async (ws) => {
   const reader = await logcat.readStream(proc.stdout, { fixLineFeeds: false });
 
   timerId = setInterval(() => {
-    if (text !== "") {
-      ws.send(text);
-    }
-    text = "";
+    sendingInterval++;
   }, 50);
 
   reader.on("entry", (entry) => {
-    text = text + "\n" + JSON.stringify(entry);
+    if (sendingInterval > 0 && text) {
+      ws.send(text);
+      text = "";
+      sendingInterval = 0;
+    }
+
+    text = text !== "" ? (text = text + "\n" + JSON.stringify(entry)) : JSON.stringify(entry);
   });
 
   process.on("exit", () => {
