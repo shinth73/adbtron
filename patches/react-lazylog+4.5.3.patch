@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-lazylog/src/components/SearchBar/index.jsx b/node_modules/react-lazylog/src/components/SearchBar/index.jsx
+index 99c980e..eec2cdb 100644
+--- a/node_modules/react-lazylog/src/components/SearchBar/index.jsx
++++ b/node_modules/react-lazylog/src/components/SearchBar/index.jsx
+@@ -91,7 +91,7 @@ export default class SearchBar extends Component {
+           autoComplete="off"
+           type="text"
+           name="search"
+-          placeholder="Search"
++          placeholder="SearchTerm"
+           className={`react-lazylog-searchbar-input ${searchInput}`}
+           onChange={this.handleSearchChange}
+           onKeyPress={this.handleSearchKeyPress}
